@@ -1,9 +1,9 @@
-import {CHANGE_INPUT_VAlUE,ADD_TODO_ITEM,DELETE_ITEM} from './actionType.js'
+import {CHANGE_INPUT_VAlUE, ADD_TODO_ITEM, DELETE_ITEM, GET_LIST} from './actionType.js'
 
 
 const defaultState ={
   inputValue:'',
-  list:[1,2,3]
+  list:[]
 }
 
 export default (state=defaultState,action)=>{
@@ -25,5 +25,13 @@ export default (state=defaultState,action)=>{
     newState.list.splice(action.index,1);
     return newState;
   }
+
+  if (action.type === GET_LIST){
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.list = action.data.data.list
+    return newState;
+  }
+
+
   return state
 }
